@@ -1,33 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IDP Simulation</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <style>
-        html{
-            margin:1rem;
+        html {
+            margin: 1rem;
         }
     </style>
 </head>
+
 <body>
     <h1>IDP Simulation</h1>
     <p>This page simulates an IDP, where it authenticates the user on a public domain and returns to the page</p>
     <p>Going back in <span id="counter"></span> seconds...</p>
     <script>
         var seconds = 5;
-        function goBack(){
-            if(seconds === 0){
-                //history.back();
-                location.href = "https://localhost:8000/test.html"
-            } else{
+        var localUrl = sessionStorage.getItem('test1_localurl');
+        if(!localUrl){
+            history.back();
+        } else {
+            auth();
+        }
+        function auth() {
+            if (seconds === 0) {
+                fetch(localUrl)
+                    .then(response => {
+                        if (response.status === 200) {
+                            returnResult('Authentication succeeded!');
+                        } else {
+                            returnResult('Authentication failed!')
+                        }
+                    })
+                    .catch(error => {
+                        returnResult('Fetch failed (network error): ' + error);
+                    });
+            } else {
                 document.getElementById('counter').innerText = seconds;
                 seconds--;
-                setTimeout(goBack,1000);
+                setTimeout(auth, 1000);
             }
         };
-        goBack();
+        function returnResult(msg){
+            let oUrl = new URL(localUrl);
+            oUrl.searchParams.set('auth-msg',msg);
+            location.href = oUrl.toString();
+        }
     </script>
 </body>
+
 </html>
