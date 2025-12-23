@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1000, initial-scale=1.0">
     <title>Local Area Network Tests</title>
+    <script>
+        function test1_createIframe(){
+            let iframe = document.createElement('iframe');
+            iframe.src = document.getElementById('test1_localurl').value;
+            if(document.getElementById('test1_allow').checked) iframe.setAttribute('allow','local-network-access *');
+            document.getElementById('test1_container').appendChild(iframe);
+        }
+    </script>
 </head>
 <body>
     <h1>Local Area Network Tests</h1>
+    <h2>Test #1: <b>Public</b> domain has iframe that loads <b>local</b> domain</h2>
+    <p>Test the need for the Allow="local-network-access". Without the attribute, it loads the page but
+       fails when coming back from the authentication of the <b>public</b> IDP.
+    </p>
+    <label for="test1_localurl">Local URL:</label><input type="text" id="test1_localurl" value="https://localhost:8000/test.html">
+    <label for="test1_allow">Add allow="local-network-access" attribute:</label><input id="test1_allow" type="checkbox">
+    <button onclick="test1_createIframe();">Create iFrame</button>
+    <div id="test1_container"></div>
+    <iframe src="" frameborder="0"></iframe>
 </body>
 </html>

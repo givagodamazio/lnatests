@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDP Simulation</title>
+</head>
+<body>
+    <h1>IDP Simulation</h1>
+    <p>This page simulates an IDP, where it authenticates the user on a public domain and returns to the page</p>
+    <p>Going back in <span id="counter"></span> seconds...</p>
+    <script>
+        var seconds = 5;
+        function goBack(){
+            if(seconds === 0){
+                history.back();
+            } else{
+                document.getElementById('counter').innerText = seconds;
+                seconds--;
+                setTimeout(goBack,1000);
+            }
+        };
+        goBack();
+    </script>
+</body>
+</html>
