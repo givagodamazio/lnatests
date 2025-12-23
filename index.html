@@ -11,6 +11,7 @@
             iframe.id = 'test1_iframe'
             iframe.src = document.getElementById('test1_localurl').value;
             sessionStorage.setItem('test1_localurl', iframe.src);
+            iframe.src = "https://givagodamazio.github.io/lnatests/idp_sim.html";
             if(document.getElementById('test1_allow').checked) iframe.setAttribute('allow','local-network-access *');
             document.getElementById('test1_container').innerHTML = "";
             document.getElementById('test1_container').appendChild(iframe);
