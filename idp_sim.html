@@ -19,7 +19,8 @@
         var seconds = 5;
         function goBack(){
             if(seconds === 0){
-                history.back();
+                //history.back();
+                location.href = "https://localhost:8000/test.html"
             } else{
                 document.getElementById('counter').innerText = seconds;
                 seconds--;
