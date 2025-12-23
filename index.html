@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1000, initial-scale=1.0">
-    <title>Local Area Network Tests</title>
+    <title>Local Network Access Tests</title>
     <script>
         function test1_createIframe(){
             let iframe = document.createElement('iframe');
@@ -22,13 +22,14 @@
         }
         iframe{
             width:100%;
+            height: 300px;
             border:1px solid #0172AD;
         }
     </style>
 
 </head>
 <body>
-    <h1>Local Area Network Tests</h1>
+    <h1>Local Network Access Tests</h1>
     <h2>Test #1: <b>Public</b> domain has iframe that loads <b>local</b> domain</h2>
     <p>Test the need for the Allow="local-network-access". Without the attribute, it loads the page but
        fails when coming back from the authentication of the <b>public</b> IDP.
