@@ -11,7 +11,7 @@
             iframe.src = document.getElementById('test1_localurl').value;
             sessionStorage.setItem('test1_localurl', iframe.src);
             iframe.src = "https://givagodamazio.github.io/lnatests/idp_sim.html";
-            if(document.getElementById('test1_allow').checked) iframe.setAttribute('allow','local-network-access *');
+            if(document.getElementById('test1_allow').checked) iframe.setAttribute('allow','local-network-access * ;');
             document.getElementById('test1_container').innerHTML = "";
             document.getElementById('test1_container').appendChild(iframe);
         }
@@ -20,7 +20,7 @@
             let iframe = document.createElement('iframe');
             iframe.id = 'test2_iframe'
             iframe.src = document.getElementById('test2_localurl').value;
-            if(document.getElementById('test2_allow').checked) iframe.setAttribute('allow','local-network-access *');
+            if(document.getElementById('test2_allow').checked) iframe.setAttribute('allow','local-network-access * ;');
             document.getElementById('test2_container').innerHTML = "";
             document.getElementById('test2_container').appendChild(iframe);
         }
