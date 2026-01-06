@@ -6,7 +6,6 @@
     <title>Local Network Access Tests</title>
     <script>
         function test1_createIframe(){
-
             let iframe = document.createElement('iframe');
             iframe.id = 'test1_iframe'
             iframe.src = document.getElementById('test1_localurl').value;
@@ -15,6 +14,15 @@
             if(document.getElementById('test1_allow').checked) iframe.setAttribute('allow','local-network-access *');
             document.getElementById('test1_container').innerHTML = "";
             document.getElementById('test1_container').appendChild(iframe);
+        }
+
+        function test2_createIframe(){
+            let iframe = document.createElement('iframe');
+            iframe.id = 'test2_iframe'
+            iframe.src = document.getElementById('test2_localurl').value;
+            if(document.getElementById('test2_allow').checked) iframe.setAttribute('allow','local-network-access *');
+            document.getElementById('test2_container').innerHTML = "";
+            document.getElementById('test2_container').appendChild(iframe);
         }
     </script>
     
@@ -34,7 +42,7 @@
 </head>
 <body>
     <h1>Local Network Access Tests</h1>
-    <h2>Test #1: <b>Public</b> domain has iframe that loads <b>local</b> domain</h2>
+    <h2>Test #1: <b>Public</b> domain has iframe that loads <b>local</b> domain, and tries to authenticate on public IdP and navigates back to local domain</h2>
     <p>Test the need for the Allow="local-network-access". Without the attribute, it loads the page but
        fails when coming back from the authentication of the <b>public</b> IDP.
     </p>
@@ -42,5 +50,13 @@
     <input id="test1_allow" type="checkbox"><label for="test1_allow">Add attribute allow="local-network-access *":</label><br><br>
     <button onclick="test1_createIframe();">Create iFrame</button><br><br>
     <div id="test1_container"></div>
+
+    <h2>Test #2: <b>Public</b> domain has iframe that loads <b>local</b> domain</h2>
+    <p>Test the need for the Allow="local-network-access". Without the attribute, it is not possible to make fetch requests to the local domain.
+    </p>
+    <label for="test2_localurl">Local URL:</label><input type="text" id="test2_localurl" value="https://localhost:8000/test2.html"><br>
+    <input id="test2_allow" type="checkbox"><label for="test2_allow">Add attribute allow="local-network-access *":</label><br><br>
+    <button onclick="test2_createIframe();">Create iFrame</button><br><br>
+    <div id="test2_container"></div>
 </body>
 </html>
