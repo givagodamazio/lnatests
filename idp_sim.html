@@ -21,7 +21,8 @@
         var seconds = 5;
         var localUrl = sessionStorage.getItem('test1_localurl');
         if(!localUrl){
-            history.back();
+            //history.back();
+            localUrl = "https://localhost:8000/test.html";
         } else {
             auth();
         }
