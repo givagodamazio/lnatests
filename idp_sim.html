@@ -23,9 +23,8 @@
         if(!localUrl){
             //history.back();
             localUrl = "https://localhost:8000/test.html";
-        } else {
-            auth();
-        }
+        } 
+        auth();
         function auth() {
             if (seconds === 0) {
                 fetch(localUrl)
